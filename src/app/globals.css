@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   BPInfo — Design Tokens
+   Fonte única de verdade para cores, tipografia, espaçamento, radius e
+   sombras. Alterar aqui reflete em todo o site.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Superfícies */
+  --bg: #faf9f6;
+  --bg-elevated: #ffffff;
+  --surface: #f1efe9;
+  --surface-strong: #e9e6dd;
+
+  /* Texto */
+  --fg: #17171b;
+  --fg-muted: #55555c;
+  --fg-subtle: #868580;
+
+  /* Bordas */
+  --border: #e2dfd6;
+  --border-strong: #cac6b9;
+
+  /* Marca / destaque (terracota) */
+  --accent: #b5502f;
+  --accent-strong: #963f23;
+  --accent-soft: #f1e3da;
+  --accent-fg: #fbf6f1;
+
+  /* Seção de contraste (sempre escura, mesmo no tema claro) */
+  --contrast-bg: #17171b;
+  --contrast-surface: #212126;
+  --contrast-fg: #f2f0ea;
+  --contrast-muted: #a8a6a0;
+  --contrast-border: #34343a;
+
+  /* Sombras (uso discreto, quase imperceptível) */
+  --shadow-sm: 0 1px 2px rgba(23, 23, 27, 0.06);
+  --shadow-md: 0 6px 20px -8px rgba(23, 23, 27, 0.16);
+
+  /* Interação */
+  --ring: var(--accent);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #131315;
+  --bg-elevated: #18181b;
+  --surface: #1c1c20;
+  --surface-strong: #26262b;
+
+  --fg: #f2f0ea;
+  --fg-muted: #a8a6a0;
+  --fg-subtle: #726f68;
+
+  --border: #2b2b30;
+  --border-strong: #3a3a41;
+
+  --accent: #d9865a;
+  --accent-strong: #e49a73;
+  --accent-soft: #2c211b;
+  --accent-fg: #17130f;
+
+  --contrast-bg: #09090a;
+  --contrast-surface: #0f0f11;
+  --contrast-fg: #f2f0ea;
+  --contrast-muted: #96938c;
+  --contrast-border: #2a2a2d;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+@theme inline {
+  /* Cores semânticas mapeadas para as variáveis acima */
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+
+  --color-contrast-bg: var(--contrast-bg);
+  --color-contrast-surface: var(--contrast-surface);
+  --color-contrast-fg: var(--contrast-fg);
+  --color-contrast-muted: var(--contrast-muted);
+  --color-contrast-border: var(--contrast-border);
+
+  --shadow-token-sm: var(--shadow-sm);
+  --shadow-token-md: var(--shadow-md);
+
+  /* Tipografia */
+  --font-display: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-sans-base), Arial, sans-serif;
+
+  /* Radius — deliberadamente contido, sem pílulas arredondadas */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+
+  /* Container editorial */
+  --breakpoint-3xl: 96rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
