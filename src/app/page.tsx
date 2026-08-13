@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { ProblemsSection } from "@/components/sections/ProblemsSection";
-import { OrbytFeaturesSection } from "@/components/sections/OrbytFeaturesSection";
-import { ProductDemoTabs } from "@/components/sections/ProductDemoTabs";
-import { ResponsivenessSection } from "@/components/sections/ResponsivenessSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
+import { SolutionsOverviewSection } from "@/components/sections/SolutionsOverviewSection";
+import { OrbytHighlightSection } from "@/components/sections/OrbytHighlightSection";
 import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
-import { CustomSolutionSection } from "@/components/sections/CustomSolutionSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SecuritySection } from "@/components/sections/SecuritySection";
-import { PlansSection } from "@/components/sections/PlansSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { FinalCta } from "@/components/sections/FinalCta";
 
 export const metadata: Metadata = {
@@ -23,17 +18,12 @@ export default function HomePage() {
     <>
       <Hero />
       <ProblemsSection />
-      <OrbytFeaturesSection />
-      <ProductDemoTabs />
-      <ResponsivenessSection />
-      <ServicesSection />
+      <SolutionsOverviewSection />
+      <OrbytHighlightSection />
       <HowWeWorkSection />
-      <CustomSolutionSection />
+      <ProjectsSection />
       <SecuritySection />
-      <PlansSection />
       <AboutSection />
-      <FaqSection />
-      <ContactSection />
       <FinalCta />
     </>
   );

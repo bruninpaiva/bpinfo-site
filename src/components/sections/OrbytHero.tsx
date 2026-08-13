@@ -9,7 +9,7 @@ export function OrbytHero() {
       <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-16 md:grid-cols-2 md:items-center md:gap-8 md:px-10 md:py-24 lg:px-12">
         <div>
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.18em] text-accent">
-            {siteConfig.product}
+            {siteConfig.product} · Produto {siteConfig.shortName}
           </p>
           <h1 className="text-balance font-display text-4xl leading-[1.1] text-fg md:text-5xl">
             {siteConfig.productTagline}

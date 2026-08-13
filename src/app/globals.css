@@ -149,4 +149,51 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Textura discreta em pontos — usada apenas como pano de fundo pontual
+     (Hero), nunca em blocos grandes de texto. */
+  .bg-grid-dots {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--border-strong) 55%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hover-lift {
+    transition:
+      transform 150ms ease-out,
+      border-color 150ms ease-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+
+  .hover-lift,
+  .hover-lift:hover {
+    transition: none;
+    transform: none;
+  }
 }

@@ -11,9 +11,9 @@ export function OrbytFeaturesSection() {
       <Container>
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeading
-            eyebrow={siteConfig.product}
+            eyebrow={`${siteConfig.product} · Produto ${siteConfig.shortName}`}
             title="Conheça o ORBYT"
-            description="Uma plataforma de gestão inteligente desenvolvida para organizar lojas, acompanhar operações e simplificar processos."
+            description="Uma plataforma de gestão desenvolvida pela BPInfo para organizar lojas, acompanhar operações e simplificar processos."
           />
           <div className="flex flex-col gap-3 sm:flex-row md:shrink-0">
             <Button href="/contato" variant="outline">

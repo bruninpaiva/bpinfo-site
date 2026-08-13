@@ -51,14 +51,13 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
             ))}
           </nav>
 
-          <div className="mt-8 flex flex-col gap-3 px-6">
-            <Button href="/orbyt" variant="outline" onClick={() => setOpen(false)}>
-              Conhecer o ORBYT
-            </Button>
+          <div className="mt-8 px-6">
             <Button
               href={buildWhatsappLink(defaultWhatsappMessage)}
               external
               variant="primary"
+              className="w-full"
+              onClick={() => setOpen(false)}
             >
               Falar pelo WhatsApp
             </Button>

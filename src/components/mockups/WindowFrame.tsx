@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { siteConfig } from "@/lib/config/site";
+
+const orbytHost = siteConfig.orbytUrl.replace(/^https?:\/\//, "");
 
 /**
  * Moldura de janela de sistema, usada para compor os mockups em HTML/CSS
@@ -8,7 +11,7 @@ import { cn } from "@/lib/cn";
  */
 export function WindowFrame({
   children,
-  label = "orbyt.app.br",
+  label = orbytHost,
   className,
 }: {
   children: ReactNode;

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { mainNav } from "@/lib/config/nav";
 import { siteConfig } from "@/lib/config/site";
@@ -6,11 +9,33 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { cn } from "@/lib/cn";
 
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-bg">
-      <Container className="flex h-16 items-center justify-between md:h-20">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-200",
+        scrolled
+          ? "border-border bg-bg/90 shadow-token-sm backdrop-blur-md"
+          : "border-transparent bg-bg/60 backdrop-blur-sm",
+      )}
+    >
+      <Container
+        className={cn(
+          "flex items-center justify-between transition-[height] duration-200",
+          scrolled ? "h-14 md:h-16" : "h-16 md:h-20",
+        )}
+      >
         <Link href="/" className="font-display text-xl tracking-tight text-fg">
           {siteConfig.shortName}
         </Link>
@@ -29,9 +54,6 @@ export function Header() {
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          <Button href="/orbyt" variant="outline" size="sm">
-            Conhecer o ORBYT
-          </Button>
           <Button
             href={buildWhatsappLink(defaultWhatsappMessage)}
             external

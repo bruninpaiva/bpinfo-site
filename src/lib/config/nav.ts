@@ -6,7 +6,6 @@ export type NavItem = {
 export const mainNav: NavItem[] = [
   { label: "Soluções", href: "/solucoes" },
   { label: "ORBYT", href: "/orbyt" },
-  { label: "Como funciona", href: "/orbyt#como-funciona" },
   { label: "Sobre", href: "/sobre" },
   { label: "Contato", href: "/contato" },
 ];

@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { ShieldCheck, KeyRound, Users, Cloud, Lock, Code2 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const points = [
   {
@@ -38,22 +38,36 @@ const points = [
 export function SecuritySection() {
   return (
     <section className="border-t border-contrast-border bg-contrast-bg py-20 text-contrast-fg md:py-28">
-      <Container>
-        <SectionHeading
-          eyebrow="Segurança"
-          title="Uma base técnica responsável"
-          description="Sem promessas genéricas: o que fazemos hoje para proteger o acesso e os dados da sua operação."
-          tone="contrast"
-        />
+      <Container className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+        <div className="md:sticky md:top-28">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-contrast-muted">
+            Segurança
+          </p>
+          <h2 className="mt-4 text-balance font-display text-3xl leading-[1.15] md:text-4xl">
+            Uma base técnica responsável.
+          </h2>
+          <p className="mt-4 max-w-sm leading-relaxed text-contrast-muted">
+            Sem promessas genéricas: o que fazemos hoje para proteger o
+            acesso e os dados da sua operação.
+          </p>
+          <Link
+            href="/privacidade"
+            className="mt-6 inline-block text-sm text-contrast-fg underline decoration-contrast-border underline-offset-4 transition-colors hover:decoration-accent"
+          >
+            Ver política de privacidade →
+          </Link>
+        </div>
 
-        <div className="mt-14 grid gap-x-10 border-t border-contrast-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-8 border-t border-contrast-border sm:grid-cols-2">
           {points.map((point) => (
-            <div key={point.title} className="border-b border-contrast-border py-8 pr-6">
-              <point.icon className="h-5 w-5 text-accent" strokeWidth={1.5} />
-              <p className="mt-4 font-display text-lg">{point.title}</p>
-              <p className="mt-2 text-sm leading-relaxed text-contrast-muted">
-                {point.description}
-              </p>
+            <div key={point.title} className="flex gap-4 border-b border-contrast-border py-6">
+              <point.icon className="mt-0.5 h-5 w-5 shrink-0 text-accent" strokeWidth={1.5} />
+              <div>
+                <p className="font-display text-base leading-snug">{point.title}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-contrast-muted">
+                  {point.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

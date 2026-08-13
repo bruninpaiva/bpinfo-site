@@ -2,6 +2,9 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WindowFrame } from "@/components/mockups/WindowFrame";
 import { MobileMockup } from "@/components/mockups/MobileMockup";
+import { siteConfig } from "@/lib/config/site";
+
+const orbytHost = siteConfig.orbytUrl.replace(/^https?:\/\//, "");
 
 const points = [
   "Interface simples, com foco nas ações mais usadas no dia a dia",
@@ -35,7 +38,7 @@ export function ResponsivenessSection() {
           </p>
         </div>
 
-        <WindowFrame label="orbyt.app.br — mobile">
+        <WindowFrame label={`${orbytHost} — mobile`}>
           <MobileMockup />
         </WindowFrame>
       </Container>
