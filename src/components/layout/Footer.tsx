@@ -1,5 +1,9 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { footerNav } from "@/lib/config/nav";
 import { siteConfig } from "@/lib/config/site";
 import { buildWhatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
@@ -8,15 +12,14 @@ import { OrbytTransitionLink } from "@/components/sections/OrbytTransitionLink";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const isOrbyt = usePathname().startsWith("/orbyt");
 
   return (
     <footer className="border-t-2 border-accent bg-bg">
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <span className="font-display text-2xl tracking-tight text-fg">
-              {siteConfig.name}
-            </span>
+            <Image src="/brand/bpinfo/logo-interface-primary.png" alt="BPInfo Tecnologia" width={410} height={118} className={isOrbyt ? "h-auto w-[10.5rem]" : "h-auto w-[12.5rem]"} />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-fg-muted">
               {siteConfig.tagline}
             </p>

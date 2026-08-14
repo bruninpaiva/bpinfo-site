@@ -12,7 +12,8 @@ const variants = {
   "on-contrast":
     "border border-contrast-border text-contrast-fg hover:border-contrast-fg",
   /** Uso exclusivo do universo ORBYT (azul/violeta) — nunca usar em telas BPInfo. */
-  "orbyt-light": "bg-[#d9ddff] text-[#090a18] hover:bg-white",
+  "orbyt-light": "rounded-[0.7rem] border border-[#eef0ff]/85 bg-[linear-gradient(135deg,#ffffff,#d9dcff_56%,#bcc9ff)] text-[#090a18] shadow-[0_12px_32px_rgba(105,87,255,0.34),0_0_0_1px_rgba(180,196,255,0.2)_inset transition-all hover:-translate-y-0.5 hover:border-white hover:bg-[linear-gradient(135deg,#ffffff,#e6eaff)] hover:shadow-[0_16px_38px_rgba(94,121,255,0.42)]",
+  "orbyt-outline": "rounded-[0.7rem] border border-[#9eaaff]/70 bg-[linear-gradient(135deg,rgba(43,49,116,.82),rgba(29,26,83,.7))] text-[#f0f2ff] shadow-[0_10px_28px_rgba(39,46,133,0.3),0_0_0_1px_rgba(165,177,255,0.12)_inset backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-[#c2caff]/90 hover:bg-[linear-gradient(135deg,rgba(67,77,163,.92),rgba(62,43,139,.84))] hover:text-white hover:shadow-[0_15px_34px_rgba(85,106,255,0.38)]",
 } as const;
 
 const sizes = {

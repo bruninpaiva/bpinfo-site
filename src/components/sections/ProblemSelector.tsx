@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowUpRight, CircleAlert } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const problems = [
-  ["Não liga", "Verificamos a causa antes de partir para troca de componente.", "top-[4%] left-[3%] text-3xl md:text-5xl -rotate-3"],
-  ["Sem vídeo", "Checamos conexões, memória, placa de vídeo e os sinais do equipamento.", "top-[1%] left-[42%] text-2xl md:text-4xl rotate-2"],
-  ["PC lento", "Analisamos o que está limitando o uso: armazenamento, memória, sistema ou configuração.", "top-[19%] left-[66%] text-4xl md:text-6xl -rotate-2"],
-  ["Baixo FPS", "Avaliamos a montagem e os componentes para entender onde o desempenho está ficando para trás.", "top-[33%] left-[8%] text-xl md:text-3xl rotate-3"],
-  ["Superaquecendo", "Limpeza, fluxo de ar e pasta térmica entram na avaliação quando a temperatura foge do normal.", "top-[45%] left-[34%] text-2xl md:text-4xl -rotate-1"],
-  ["Travando", "Falhas intermitentes pedem diagnóstico, não tentativa aleatória de conserto.", "top-[58%] left-[64%] text-3xl md:text-5xl rotate-2"],
-  ["Tela azul", "Identificamos se o problema vem de driver, sistema, memória ou outro componente.", "top-[71%] left-[4%] text-4xl md:text-6xl -rotate-2"],
-  ["Precisa de upgrade", "Indicamos o que vale atualizar para o uso que você realmente faz.", "top-[81%] left-[38%] text-xl md:text-3xl rotate-1"],
+  ["Não liga", "Verificamos a causa antes de partir para troca de componente."],
+  ["Sem vídeo", "Checamos conexões, memória, placa de vídeo e os sinais do equipamento."],
+  ["PC lento", "Analisamos o que está limitando o uso: armazenamento, memória, sistema ou configuração."],
+  ["Baixo FPS", "Avaliamos a montagem e os componentes para entender onde o desempenho está ficando para trás."],
+  ["Superaquecendo", "Limpeza, fluxo de ar e pasta térmica entram na avaliação quando a temperatura foge do normal."],
+  ["Travando", "Falhas intermitentes pedem diagnóstico, não tentativa aleatória de conserto."],
+  ["Tela azul", "Identificamos se o problema vem de driver, sistema, memória ou outro componente."],
+  ["Precisa de upgrade", "Indicamos o que vale atualizar para o uso que você realmente faz."],
 ] as const;
 
 export function ProblemSelector() {
@@ -19,69 +20,34 @@ export function ProblemSelector() {
   const [label, description] = problems[active]!;
 
   return (
-    <section className="relative overflow-hidden bg-[#12110f] py-20 text-contrast-fg md:py-28">
-      <p aria-hidden className="pointer-events-none absolute -bottom-10 left-[3%] select-none font-display text-[9rem] italic leading-none text-white/[0.035] md:text-[14rem]">
-        03
-      </p>
-
-      <div className="relative mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Problemas reais</p>
-        <h2 className="mt-4 max-w-3xl font-display text-4xl leading-[0.96] tracking-tight sm:text-5xl lg:text-6xl">
-          O computador avisa quando alguma coisa não está certa.
-        </h2>
-
-        {/* ---------- Desktop: campo tipográfico disperso, item ativo cresce e reorganiza a leitura ---------- */}
-        <div className="relative mt-4 hidden h-[40rem] md:block lg:h-[44rem]">
-          {problems.map(([problem, , position], index) => {
-            const isActive = active === index;
-            return (
-              <button
-                key={problem}
-                type="button"
-                onClick={() => setActive(index)}
-                onMouseEnter={() => setActive(index)}
-                aria-pressed={isActive}
-                className={cn(
-                  "absolute font-display font-medium leading-none tracking-tight transition-[transform,color,opacity] duration-300",
-                  position,
-                  isActive
-                    ? "z-20 scale-[1.18] text-accent"
-                    : "z-0 scale-100 text-contrast-muted/70 hover:text-contrast-fg",
-                )}
-                style={{ transformOrigin: "left center" }}
-              >
-                {problem.toUpperCase()}
-              </button>
-            );
-          })}
-
-          <div className="absolute right-0 top-0 z-30 max-w-[15rem] border-t-2 border-accent pt-4 text-right">
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-accent">{String(active + 1).padStart(2, "0")} · {label}</p>
-            <p className="mt-3 leading-relaxed text-contrast-muted">{description}</p>
-          </div>
+    <section className="relative overflow-hidden bg-[#0c121a] py-20 text-white md:py-28">
+      <div aria-hidden className="absolute right-[4%] top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#1b9bd6]/15 blur-3xl" />
+      <div className="relative mx-auto grid w-full max-w-[92rem] gap-12 px-6 md:grid-cols-[0.88fr_1.12fr] md:items-center md:px-10 lg:gap-20 lg:px-14">
+        <div>
+          <p className="bp-home-kicker">Problemas reais</p>
+          <h2 className="bp-home-display mt-5 max-w-xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] md:text-5xl">O computador avisa quando alguma coisa não está certa.</h2>
+          <p className="mt-6 max-w-lg leading-7 text-slate-400">Escolha um sintoma. O ponto de partida é entender o que a sua máquina está tentando dizer.</p>
         </div>
 
-        {/* ---------- Mobile: lista compacta, sem posicionamento absoluto ---------- */}
-        <div className="mt-10 md:hidden">
-          <div className="flex flex-wrap gap-x-5 gap-y-3">
+        <div>
+          <div className="flex flex-wrap gap-2.5">
             {problems.map(([problem], index) => (
               <button
                 key={problem}
                 type="button"
                 onClick={() => setActive(index)}
+                onMouseEnter={() => setActive(index)}
                 aria-pressed={active === index}
-                className={cn(
-                  "font-display text-2xl leading-none transition-colors",
-                  active === index ? "text-accent" : "text-contrast-muted",
-                )}
+                className={cn("rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-200", active === index ? "border-[#70d9ff]/55 bg-[#3abff5]/15 text-white shadow-[0_0_24px_rgba(69,197,255,0.13)]" : "border-white/10 bg-white/[0.035] text-slate-300 hover:border-white/25 hover:bg-white/[0.07] hover:text-white")}
               >
-                {problem.toUpperCase()}
+                {problem}
               </button>
             ))}
           </div>
-          <div className="mt-8 border-l-2 border-accent pl-5">
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-accent">{label}</p>
-            <p className="mt-3 leading-relaxed text-contrast-muted">{description}</p>
+
+          <div className="mt-6 flex gap-4 rounded-[1.35rem] border border-white/10 bg-[#071018]/70 p-5 shadow-[0_18px_45px_rgba(0,0,0,0.2)] backdrop-blur-sm md:p-6">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#55d1ff]/10 text-[#71dbff]"><CircleAlert className="h-5 w-5" strokeWidth={1.7} /></span>
+            <div><p className="font-[family-name:var(--font-bp-display)] text-lg font-semibold tracking-[-0.02em] text-white">{label}</p><p className="mt-2 leading-7 text-slate-300">{description}</p><span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#73dcff]">Vamos investigar antes de decidir <ArrowUpRight className="h-4 w-4" /></span></div>
           </div>
         </div>
       </div>

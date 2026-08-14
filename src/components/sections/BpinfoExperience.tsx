@@ -1,343 +1,90 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import { ArrowDownRight, ArrowUpRight, Wrench } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Check, Cpu, Gauge, ShieldCheck, Wrench, Zap } from "lucide-react";
 import { DashboardMockup } from "@/components/mockups/DashboardMockup";
 import { WindowFrame } from "@/components/mockups/WindowFrame";
 import { ProblemSelector } from "@/components/sections/ProblemSelector";
 import { OrbytTransitionLink } from "@/components/sections/OrbytTransitionLink";
-import { HardwareSculpture } from "@/components/visuals/HardwareSculpture";
 import { buildWhatsappLink, hardwareWhatsappMessage } from "@/lib/whatsapp";
 
 const services = [
-  {
-    number: "01",
-    title: "PC Gamer",
-    statement: "Comprou as peças? A BPInfo monta, organiza, configura e testa.",
-    detail: "Uma máquina preparada para o seu setup, sem transformar a montagem em tentativa e erro.",
-    accent: "#19c99a",
-  },
-  {
-    number: "02",
-    title: "Manutenção",
-    statement: "Seu PC não está funcionando como deveria? Primeiro identificamos o problema.",
-    detail: "Lentidão, aquecimento, falhas e instabilidade precisam de diagnóstico antes de qualquer troca.",
-    accent: "#26e0ae",
-  },
-  {
-    number: "03",
-    title: "Upgrades",
-    statement: "Melhore o que está limitando sua máquina, não apenas o que parece mais novo.",
-    detail: "SSD, memória, placa de vídeo e outros componentes avaliados pelo uso que você tem hoje.",
-    accent: "#0e9c77",
-  },
-  {
-    number: "04",
-    title: "Sistemas",
-    statement: "Quando o problema está no processo, também construímos a solução.",
-    detail: "Sistemas, automações, integrações e produtos próprios para operações que precisam funcionar melhor.",
-    accent: "#7898ff",
-  },
+  { title: "PC Gamer", statement: "Montagem pensada para o seu jogo, seu espaço e o seu orçamento.", detail: "Escolha de peças, montagem limpa, configuração e testes antes de entregar a máquina.", icon: Cpu },
+  { title: "Manutenção", statement: "Diagnóstico antes de qualquer troca ou promessa.", detail: "Investigamos lentidão, aquecimento, falhas e instabilidade para resolver a causa certa.", icon: Wrench },
+  { title: "Upgrades", statement: "Mais desempenho onde ele realmente faz diferença.", detail: "SSD, memória, placa de vídeo e ajustes definidos pelo uso que você tem hoje.", icon: Zap },
 ];
 
-const gallerySlots = [
-  ["Montagens", "Foto vertical de uma máquina finalizada", "tall"],
-  ["Organização", "Detalhe de cabos e componentes", "wide"],
-  ["Manutenção", "Registro técnico de bancada", "square"],
-  ["Upgrades", "Antes e depois com contexto", "landscape"],
-] as const;
+const buildSteps = ["Projeto da máquina", "Montagem e organização", "Configuração do sistema", "Teste antes da entrega"];
 
 export function BpinfoExperience() {
   return (
-    <div className="relative overflow-hidden bg-[#090909] text-contrast-fg">
-      <div aria-hidden className="bp-spine left-[6.5%] hidden lg:block" />
-      <div aria-hidden className="bp-spine left-[93%] hidden lg:block" />
+    <div className="bp-home overflow-hidden bg-[#070a0f] text-[#eff8ff]">
+      <section className="bp-home-hero relative isolate min-h-[calc(100svh-4rem)] overflow-hidden md:min-h-[46rem]">
+        <Image src="/bpinfo/hardware-hero-v1.png" alt="PC gamer montado em bancada técnica da BPInfo" fill priority sizes="100vw" className="object-cover object-[68%_center]" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,8,13,0.98)_0%,rgba(5,8,13,0.9)_32%,rgba(5,8,13,0.38)_66%,rgba(5,8,13,0.16)_100%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,8,13,0.15),rgba(5,8,13,0.2)_52%,#070a0f_100%)]" />
+        <div aria-hidden className="bp-home-hero-glow absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full" />
 
-      <section className="bp-home-hero relative overflow-hidden pt-24">
-        <div aria-hidden className="bp-circuit-field absolute inset-0 opacity-80" />
-
-        {/* ---------- Desktop: tipografia e escultura em profundidade, sem coluna texto/imagem ---------- */}
-        <div className="relative hidden md:block md:h-[46rem] lg:h-[50rem]">
-          <p aria-hidden className="absolute -right-6 top-6 font-display text-[24vw] leading-none tracking-[-0.08em] text-white/[0.035] lg:text-[19vw]">BP</p>
-
-          <HardwareSculpture className="absolute right-[2%] top-[10%] z-10 h-[34rem] w-[34rem] opacity-80 lg:right-[6%] lg:h-[40rem] lg:w-[40rem]" />
-
-          <p className="absolute left-[2%] top-[6%] z-20 text-xs font-medium uppercase tracking-[0.23em] text-accent">
-            BPInfo Tecnologia
-          </p>
-
-          <h1
-            aria-hidden
-            className="pointer-events-none absolute left-[-1%] top-[13%] z-20 select-none font-display text-[clamp(4.5rem,10vw,9.5rem)] italic leading-[0.82] tracking-[-0.03em] text-contrast-fg"
-          >
-            Hardware.
-          </h1>
-
-          <p
-            aria-hidden
-            className="pointer-events-none absolute left-[30%] top-[40%] z-[5] -rotate-2 select-none font-display text-[clamp(2.8rem,6.4vw,5.5rem)] italic leading-[0.9] text-contrast-fg/60"
-          >
-            Performance.
-          </p>
-
-          <p
-            aria-hidden
-            className="absolute bottom-[10%] right-[2%] z-20 origin-bottom-right select-none text-sm font-extrabold uppercase tracking-[0.34em] text-accent [writing-mode:vertical-rl]"
-          >
-            Sistemas.
-          </p>
-
-          {/* Screen-reader only real heading, since the visual words above are split/decorative */}
-          <h1 className="sr-only">Hardware. Performance. Sistemas.</h1>
-
-          <div className="absolute bottom-[7%] left-[9%] z-20 max-w-sm">
-            <p className="text-base leading-relaxed text-contrast-muted md:text-lg">
-              Manutenção, montagem, upgrades e desenvolvimento de sistemas para resolver tecnologia no mundo real.
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a href={buildWhatsappLink(hardwareWhatsappMessage)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-accent px-6 py-3 text-sm font-semibold text-accent-fg transition-colors hover:bg-accent-strong">
-                Solicitar orçamento <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-              </a>
-              <Link href="#servicos" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-contrast-fg transition-colors hover:text-accent">
-                Conhecer serviços <ArrowDownRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-              </Link>
+        <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-[92rem] items-center px-6 pb-16 pt-28 md:min-h-[46rem] md:px-10 md:pb-20 lg:px-14">
+          <div className="max-w-2xl">
+            <p className="bp-home-kicker">Tecnologia que acompanha o seu ritmo</p>
+            <h1 className="bp-home-display mt-5 text-balance text-[2.85rem] font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[5.65rem]">Seu próximo PC começa com uma escolha melhor.</h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">Montagem de PC gamer, manutenção, upgrades e suporte técnico com conversa clara do primeiro diagnóstico à entrega.</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a href={buildWhatsappLink(hardwareWhatsappMessage)} target="_blank" rel="noopener noreferrer" className="bp-home-button bp-home-button--primary">Solicitar orçamento <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} /></a>
+              <Link href="#servicos" className="bp-home-button bp-home-button--secondary">Conhecer serviços <ArrowDownRight className="h-4 w-4" strokeWidth={1.8} /></Link>
+            </div>
+            <div className="mt-11 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-300">
+              {["Diagnóstico sem adivinhação", "Montagem com organização", "Desempenho para o uso real"].map((item) => <span key={item} className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-[#62d5ff]" strokeWidth={2} />{item}</span>)}
             </div>
           </div>
         </div>
-
-        {/* ---------- Mobile: pilha assimétrica própria, não a mesma matemática absoluta do desktop ---------- */}
-        <div className="relative flex flex-col px-6 pb-14 pt-4 md:hidden">
-          <HardwareSculpture className="pointer-events-none absolute -right-20 -top-4 z-0 h-64 w-64 opacity-35" />
-          <p className="relative z-10 text-xs font-medium uppercase tracking-[0.23em] text-accent">BPInfo Tecnologia</p>
-          <h1 className="relative z-10 mt-4 font-display text-[16vw] italic leading-[0.82] tracking-[-0.02em] text-contrast-fg">
-            Hardware.
-          </h1>
-          <p className="relative z-10 -mt-1 ml-[18%] font-display text-[9.5vw] italic leading-[0.9] text-contrast-fg/60">
-            Performance.
-          </p>
-          <p className="relative z-10 mt-4 text-xs font-extrabold uppercase tracking-[0.3em] text-accent">Sistemas.</p>
-          <p className="relative z-10 mt-6 max-w-xs text-base leading-relaxed text-contrast-muted">
-            Manutenção, montagem, upgrades e desenvolvimento de sistemas para resolver tecnologia no mundo real.
-          </p>
-          <div className="relative z-10 mt-7 flex flex-col gap-3">
-            <a href={buildWhatsappLink(hardwareWhatsappMessage)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-accent px-6 py-3 text-sm font-semibold text-accent-fg transition-colors hover:bg-accent-strong">
-              Solicitar orçamento <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-            </a>
-            <Link href="#servicos" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-contrast-fg transition-colors hover:text-accent">
-              Conhecer serviços <ArrowDownRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-            </Link>
-          </div>
-        </div>
-
-        <div className="relative mx-auto mt-8 flex w-full max-w-[92rem] justify-between gap-5 border-t border-white/10 px-6 pt-4 text-[10px] uppercase tracking-[0.16em] text-contrast-muted md:px-10 md:text-xs lg:px-14">
-          <span>Diagnóstico antes da decisão</span>
-          <span className="hidden sm:inline">Do componente ao processo</span>
-          <span>BPInfo / 01</span>
-        </div>
       </section>
 
-      <div className="bp-marquee overflow-hidden bg-accent py-3 text-accent-fg" aria-label="Serviços BPInfo">
-        <div className="bp-marquee-track font-display text-xl tracking-[0.08em] md:text-2xl">PC GAMER <span>•</span> MANUTENÇÃO <span>•</span> UPGRADES <span>•</span> HARDWARE <span>•</span> SISTEMAS <span>•</span> AUTOMAÇÕES <span>•</span> PC GAMER <span>•</span> MANUTENÇÃO <span>•</span> UPGRADES <span>•</span> HARDWARE <span>•</span> SISTEMAS <span>•</span> AUTOMAÇÕES <span>•</span></div>
-      </div>
-
-      <section id="servicos" className="relative overflow-hidden bg-[#11100f] py-24 md:py-32">
-        <p aria-hidden className="pointer-events-none absolute -top-6 right-[2%] select-none font-display text-[9rem] italic leading-none text-white/[0.035] md:text-[13rem]">
-          02
-        </p>
-
+      <section id="servicos" className="relative bg-[#0a0f16] pb-16 pt-24 md:pb-20 md:pt-32">
+        <div aria-hidden className="absolute right-[-8rem] top-20 h-80 w-80 rounded-full bg-[#127db9]/15 blur-3xl" />
         <div className="relative mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <div className="max-w-md md:ml-[8%]">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">O que fazemos</p>
-            <h2 className="mt-4 font-display text-4xl leading-[0.96] sm:text-5xl">Tecnologia não para em uma tela.</h2>
+          <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+            <div className="lg:pt-6"><p className="bp-home-kicker">O que fazemos</p><h2 className="bp-home-display mt-5 max-w-md text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white md:text-5xl">Hardware bem resolvido não precisa ser complicado.</h2><p className="mt-6 max-w-md leading-7 text-slate-400">Você conta o que precisa. A BPInfo traduz isso em uma máquina, serviço ou melhoria que faça sentido.</p></div>
+            <div className="grid gap-4 sm:grid-cols-3 lg:pt-8">
+              {services.map(({ title, statement, detail, icon: Icon }) => <article key={title} className="bp-home-service group"><div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#4acbff]/10 text-[#6bd7ff] transition-colors group-hover:bg-[#4acbff]/18"><Icon className="h-5 w-5" strokeWidth={1.6} /></div><h3 className="bp-home-display mt-7 text-2xl font-semibold tracking-[-0.035em] text-white">{title}</h3><p className="mt-3 text-sm font-medium leading-6 text-slate-200">{statement}</p><p className="mt-4 text-sm leading-6 text-slate-400">{detail}</p></article>)}
+            </div>
           </div>
-
-          <div className="relative mt-16 md:mt-6">
-            {services.map((service, index) => {
-              const align = ["md:ml-0 md:mr-[32%]", "md:ml-[24%] md:mr-0 md:text-right", "md:ml-[4%] md:mr-[40%]", "md:ml-[38%] md:mr-0"][index]!;
-              const overlap = index === 2 ? "md:-mt-16" : index === 0 ? "" : "md:mt-6";
-              const numberAlign = index % 2 === 1 ? "md:right-0 md:text-right" : "md:left-0";
-              return (
-                <article key={service.title} className={`relative py-14 first:pt-0 md:py-20 ${overlap}`}>
-                  <span
-                    aria-hidden
-                    className={`absolute -top-10 left-0 select-none font-display text-8xl leading-none text-white/[0.05] md:top-[-2.5rem] md:text-[10rem] ${numberAlign}`}
-                  >
-                    {service.number}
-                  </span>
-                  <div className={`relative max-w-xl ${align}`}>
-                    <p className="text-xs font-medium uppercase tracking-[0.18em]" style={{ color: service.accent }}>{service.title}</p>
-                    <h3 className="mt-5 font-display text-3xl leading-[1.02] md:text-4xl lg:text-5xl">{service.statement}</h3>
-                    <p className="mt-5 max-w-md leading-relaxed text-contrast-muted">{service.detail}</p>
-                    {service.title === "Sistemas" ? <Link href="/solucoes" className="mt-7 inline-flex items-center text-sm text-[#b7c9ff] hover:text-white">Conhecer soluções digitais <ArrowUpRight className="ml-2 h-4 w-4" /></Link> : null}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+          <div className="mt-14 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/[0.07] pt-7 text-sm text-slate-400"><span className="font-medium text-slate-200">Também desenvolvemos sistemas e automações.</span><Link href="/solucoes" className="inline-flex items-center gap-2 text-[#70d9ff] transition-colors hover:text-white">Conhecer soluções digitais <ArrowUpRight className="h-4 w-4" /></Link></div>
         </div>
       </section>
 
       <ProblemSelector />
 
-      <section className="relative overflow-hidden bg-surface py-24 md:py-32">
-        <div aria-hidden className="absolute -left-28 top-0 h-[34rem] w-[34rem] rounded-full bg-accent/10 blur-3xl" />
-        <p aria-hidden className="pointer-events-none absolute -bottom-16 right-[3%] select-none font-display text-[9rem] italic leading-none text-fg/[0.04] md:text-[13rem]">04</p>
-
-        <div className="relative mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Manutenção</p>
-
-          {/* Desktop: imagem dominante com anotações técnicas sobrepostas, título cruzando a borda */}
-          <div className="relative mt-6 hidden md:block">
-            <div className="bp-photo-frame relative ml-[16%] h-[28rem] w-[92%] lg:h-[32rem]">
-              <span className="absolute left-6 top-6 flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-fg-muted">
-                <span className="h-px w-6 bg-accent" /> Foto real / em breve
-              </span>
-              <div className="absolute left-[12%] top-[20%] flex items-center gap-2 text-xs text-accent">
-                <span className="bp-hardware-leader w-6" /> Fluxo de ar
-              </div>
-              <div className="absolute bottom-[18%] left-[42%] flex items-center gap-2 text-xs text-accent">
-                <Wrench className="h-4 w-4" strokeWidth={1.3} /> Pasta térmica
-              </div>
-              <div className="absolute right-[10%] top-[42%] flex items-center gap-2 text-xs text-accent">
-                <span className="bp-hardware-leader w-6" /> Componentes
-              </div>
-            </div>
-
-            <h2 className="absolute -top-2 left-[3%] z-10 max-w-lg font-display text-5xl leading-[0.94] text-fg drop-shadow-[0_4px_24px_rgba(11,13,16,0.85)] lg:text-6xl">
-              Diagnóstico é parte do conserto.
-            </h2>
-
-            <div className="ml-[16%] mt-8 max-w-sm">
-              <p className="text-lg leading-relaxed text-fg-muted">Seu PC está esquentando, travando ou perdeu desempenho? Primeiro identificamos a origem. Depois decidimos o que realmente precisa ser feito.</p>
-              <p className="mt-4 text-xs leading-relaxed text-fg-subtle">Limpeza interna, pasta térmica quando necessária, instalação, configuração e troca de componentes.</p>
-            </div>
-          </div>
-
-          {/* Mobile */}
-          <div className="mt-6 md:hidden">
-            <h2 className="max-w-md font-display text-4xl leading-[0.96] text-fg">Diagnóstico é parte do conserto.</h2>
-            <div className="bp-photo-frame relative mt-6 h-56 w-full">
-              <div className="absolute bottom-4 left-4 flex items-center gap-2 text-xs text-accent">
-                <Wrench className="h-4 w-4" strokeWidth={1.3} /> Pasta térmica
-              </div>
-            </div>
-            <p className="mt-6 text-base leading-relaxed text-fg-muted">Seu PC está esquentando, travando ou perdeu desempenho? Primeiro identificamos a origem. Depois decidimos o que realmente precisa ser feito.</p>
-            <p className="mt-3 text-xs leading-relaxed text-fg-subtle">Limpeza interna, pasta térmica quando necessária, instalação, configuração e troca de componentes.</p>
-          </div>
+      <section className="relative overflow-hidden bg-[#070b11] py-24 md:py-32">
+        <div aria-hidden className="absolute left-[7%] top-16 h-72 w-72 rounded-full bg-[#168fc6]/15 blur-3xl" />
+        <div className="relative mx-auto grid w-full max-w-[92rem] gap-12 px-6 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-10 lg:gap-20 lg:px-14">
+          <div><p className="bp-home-kicker">Manutenção e diagnóstico</p><h2 className="bp-home-display mt-5 max-w-xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white md:text-5xl">Seu computador dá sinais. A gente encontra a origem.</h2><p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">Aquecimento, travamento, ruído ou queda de desempenho não pedem tentativa e erro. Pedem análise técnica.</p><ul className="mt-8 grid gap-4 text-sm leading-6 text-slate-300 sm:grid-cols-2">{["Limpeza interna e fluxo de ar", "Pasta térmica quando necessária", "Configuração e atualização", "Troca só do que faz sentido"].map((item) => <li key={item} className="flex gap-3"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#65d6ff]" />{item}</li>)}</ul></div>
+          <div className="bp-home-photo relative min-h-[20rem] overflow-hidden rounded-[2rem] md:min-h-[29rem]"><Image src="/bpinfo/hardware-hero-v1.png" alt="Detalhe de hardware e bancada de manutenção" fill sizes="(max-width: 767px) 100vw, 55vw" className="object-cover object-[80%_center]" /><div aria-hidden className="absolute inset-0 bg-[linear-gradient(130deg,rgba(7,11,17,0.08),rgba(7,11,17,0.78))]" /><div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-[#081019]/75 p-5 backdrop-blur-md sm:max-w-sm"><p className="flex items-center gap-2 text-sm font-medium text-white"><Gauge className="h-4 w-4 text-[#6bd7ff]" />Diagnóstico com leitura clara</p><p className="mt-2 text-sm leading-6 text-slate-300">Você sabe o que aconteceu, o que precisa ser feito e por quê.</p></div></div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#0b0b0c] py-24 md:py-32">
-        <div aria-hidden className="bp-circuit-field absolute inset-0 opacity-40" />
-        <p aria-hidden className="pointer-events-none absolute left-[1%] top-[4%] select-none font-display text-[11rem] italic leading-none text-accent/[0.07] md:text-[17rem]">01</p>
-
-        <div className="relative mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">PC Gamer / montagem</p>
-
-          {/* Desktop: imagem dominante extrapolando a coluna, sequência integrada como legenda técnica */}
-          <div className="relative mt-4 hidden md:block">
-            <h2 className="relative z-10 max-w-2xl font-display text-5xl leading-[0.94] md:text-7xl">Não é só encaixar componentes.</h2>
-
-            <div className="bp-photo-frame relative -mt-8 ml-[14%] h-[26rem] w-[100%] lg:h-[30rem]">
-              <span className="absolute left-6 top-6 text-[10px] uppercase tracking-[0.16em] text-fg-muted">Foto real / em breve — montagem</span>
-            </div>
-
-            <div className="relative z-10 ml-[14%] mt-8 flex w-[84%] justify-between gap-6">
-              {["Projeto", "Montagem", "Organização", "Configuração e teste"].map((step, index) => (
-                <div key={step} className={`flex flex-col ${index % 2 === 1 ? "mt-7" : ""}`}>
-                  <span className="font-display text-3xl leading-none text-accent/80">0{index + 1}</span>
-                  <p className="mt-2 text-sm text-contrast-fg">{step}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile */}
-          <div className="mt-4 md:hidden">
-            <h2 className="font-display text-4xl leading-[0.94]">Não é só encaixar componentes.</h2>
-            <div className="bp-photo-frame relative mt-6 h-56 w-full">
-              <span className="absolute left-4 top-4 text-[10px] uppercase tracking-[0.16em] text-fg-muted">Foto real / em breve</span>
-            </div>
-            <ol className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8">
-              {["Projeto", "Montagem", "Organização", "Configuração e teste"].map((step, index) => (
-                <li key={step}>
-                  <span className="font-display text-4xl leading-none text-accent/80">0{index + 1}</span>
-                  <p className="mt-2 text-sm text-contrast-fg">{step}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+      <section className="relative overflow-hidden bg-[#0d121a] py-24 md:py-32">
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(29,156,220,0.16),transparent_24%),linear-gradient(115deg,transparent_45%,rgba(93,209,255,0.04))]" />
+        <div className="relative mx-auto grid w-full max-w-[92rem] gap-12 px-6 md:grid-cols-[1.08fr_0.92fr] md:items-center md:px-10 lg:gap-20 lg:px-14">
+          <div><p className="bp-home-kicker">PC gamer e montagem</p><h2 className="bp-home-display mt-5 max-w-2xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white md:text-6xl">Não é só encaixar componentes. É deixar a máquina pronta para render.</h2><p className="mt-6 max-w-xl leading-7 text-slate-300">Cada montagem passa por uma sequência simples, mas importante: projeto, organização, configuração e teste.</p></div>
+          <ol className="space-y-3">{buildSteps.map((step) => <li key={step} className="bp-home-step"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#55d1ff]/10 text-[#72dcff]"><Check className="h-4 w-4" strokeWidth={2.4} /></span><span>{step}</span></li>)}</ol>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#161513] py-24 md:py-32">
-        <p aria-hidden className="pointer-events-none absolute left-1/2 top-[4%] -translate-x-1/2 select-none whitespace-nowrap font-display text-[7rem] italic leading-none text-white/[0.035] md:text-[10rem]">
-          BANCADA
-        </p>
-
-        <div className="relative mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <div className="max-w-lg">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Trabalhos reais</p>
-            <h2 className="mt-4 font-display text-4xl md:text-5xl">Espaço para mostrar o que sai da bancada.</h2>
-            <p className="mt-4 text-sm leading-relaxed text-contrast-muted">A galeria está pronta para fotos reais de montagens, upgrades, cabos e manutenções. Nenhuma imagem fictícia foi usada.</p>
-          </div>
-
-          {/* Desktop: composição editorial sobreposta, não uma grade */}
-          <div className="relative mt-20 hidden md:block md:h-[42rem] lg:h-[48rem]">
-            {[
-              { title: "Montagens", pos: "left-0 top-0 z-10 h-full w-[30%]", caption: "-bottom-8 left-0" },
-              { title: "Organização", pos: "left-[26%] top-[4%] z-20 h-[44%] w-[52%]", caption: "-bottom-8 left-0" },
-              { title: "Manutenção", pos: "-right-[3%] top-[34%] z-30 h-[36%] w-[24%]", caption: "-bottom-8 right-0 text-right" },
-              { title: "Upgrades", pos: "left-[8%] top-[62%] z-40 h-[30%] w-[38%]", caption: "-bottom-8 left-0" },
-            ].map((slot, index) => (
-              <div key={slot.title} className={`absolute ${slot.pos}`}>
-                <div className="bp-photo-frame h-full w-full" />
-                <p className={`absolute whitespace-nowrap text-xs uppercase tracking-[0.16em] text-contrast-muted ${slot.caption}`}>
-                  0{index + 1} · {slot.title}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile: pilha com alturas variadas, sem grid */}
-          <div className="mt-10 space-y-8 md:hidden">
-            {gallerySlots.map(([title, description], index) => (
-              <div key={title}>
-                <div className={`bp-photo-frame w-full ${index === 0 ? "h-64" : "h-40"}`} />
-                <p className="mt-3 text-xs uppercase tracking-[0.16em] text-contrast-muted">0{index + 1} · {title}</p>
-                <p className="mt-1 text-xs text-contrast-muted/70">{description}</p>
-              </div>
-            ))}
-          </div>
+      <section className="relative bg-[#080d13] py-24 md:py-32">
+        <div className="mx-auto grid w-full max-w-[92rem] gap-12 px-6 md:grid-cols-[0.82fr_1.18fr] md:items-end md:px-10 lg:gap-20 lg:px-14">
+          <div><p className="bp-home-kicker">Trabalhos reais</p><h2 className="bp-home-display mt-5 text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white md:text-5xl">A diferença aparece nos detalhes da bancada.</h2><p className="mt-6 leading-7 text-slate-400">Montagens, organização, manutenção e upgrades feitos com atenção ao que torna a máquina confiável no dia a dia.</p></div>
+          <div className="relative"><div className="bp-home-photo relative min-h-[19rem] overflow-hidden rounded-[2rem] md:min-h-[24rem]"><Image src="/bpinfo/hardware-hero-v1.png" alt="Bancada para montagem e upgrade de PC gamer" fill sizes="(max-width: 767px) 100vw, 58vw" className="object-cover object-[70%_center]" /><div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,10,15,0.4),transparent_60%)]" /></div><div className="relative -mt-5 ml-5 flex max-w-max flex-wrap gap-2 rounded-2xl border border-white/10 bg-[#0b121a]/90 p-3 shadow-2xl backdrop-blur-md md:absolute md:-bottom-5 md:left-6 md:mt-0">{["Montagens", "Organização", "Manutenção", "Upgrades"].map((item) => <span key={item} className="rounded-full bg-white/[0.06] px-3 py-1.5 text-xs text-slate-200">{item}</span>)}</div></div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#0b0a10] py-28 md:py-36">
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(25,201,154,.5),transparent_28%),radial-gradient(circle_at_78%_72%,rgba(110,113,255,.55),transparent_32%)]" />
-        <div aria-hidden className="absolute inset-0 opacity-60 [background-image:linear-gradient(120deg,transparent_48%,rgba(119,141,255,.32)_49%,transparent_50%)] [background-size:92px_92px]" />
-        <div className="relative mx-auto max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#c0c9ff]">Hardware → software</p>
-          <h2 className="mt-5 max-w-4xl font-display text-5xl leading-[0.94] md:text-7xl">Nem todo problema de tecnologia está dentro do computador.</h2>
-        </div>
-      </section>
+      <section className="relative overflow-hidden bg-[#0c111b] py-24 md:py-32"><div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(53,177,235,0.18),transparent_25%),radial-gradient(circle_at_78%_72%,rgba(43,109,171,0.2),transparent_30%)]" /><div className="relative mx-auto max-w-[92rem] px-6 md:px-10 lg:px-14"><p className="bp-home-kicker">Hardware e software</p><h2 className="bp-home-display mt-5 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white md:text-6xl">Nem todo problema de tecnologia está dentro do computador.</h2></div></section>
 
-      <section className="relative overflow-hidden bg-[#090b16] py-24 md:py-32">
-        <div aria-hidden className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_1px_1px,rgba(150,170,255,.28)_1px,transparent_0)] [background-size:24px_24px]" />
-        <p aria-hidden className="pointer-events-none absolute -top-10 left-[3%] select-none font-display text-[9rem] italic leading-none text-[#aab8ff]/[0.07] md:text-[13rem]">05</p>
-
-        <div className="relative mx-auto grid w-full max-w-[92rem] gap-12 px-6 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-10 lg:px-14">
-          <div className="md:pb-16"><p className="text-xs font-medium uppercase tracking-[0.2em] text-[#aab8ff]">Sistemas & Automações</p><h2 className="mt-4 font-display text-5xl leading-[0.94] md:text-6xl">Quando o processo é o problema, também construímos a solução.</h2><p className="mt-6 max-w-lg leading-relaxed text-[#b5b7cb]">Sistemas personalizados, automações, integrações e produtos próprios para tirar a operação de planilhas, retrabalho e informações espalhadas.</p><Link href="/solucoes" className="mt-7 inline-flex items-center text-sm text-[#d9dcff] hover:text-white">Conhecer soluções <ArrowUpRight className="ml-2 h-4 w-4" /></Link></div>
-          <div className="relative md:-mr-[6%] md:mt-16 md:rotate-1"><div aria-hidden className="absolute -inset-8 rounded-full bg-[#5f68f2]/20 blur-3xl" /><WindowFrame className="relative border-[#656fd7]/60 bg-[#11142b]"><DashboardMockup /></WindowFrame></div>
-        </div>
-      </section>
+      <section className="relative overflow-hidden bg-[#09111d] py-24 md:py-32"><div aria-hidden className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_1px_1px,rgba(120,205,255,.24)_1px,transparent_0)] [background-size:26px_26px]" /><div className="relative mx-auto grid w-full max-w-[92rem] gap-12 px-6 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-10 lg:px-14"><div><p className="bp-home-kicker">Sistemas e automações</p><h2 className="bp-home-display mt-5 text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white md:text-5xl">Quando o processo é o problema, também construímos a solução.</h2><p className="mt-6 max-w-lg leading-7 text-slate-300">Sistemas personalizados, automações, integrações e produtos próprios para tirar a operação de planilhas, retrabalho e informações espalhadas.</p><Link href="/solucoes" className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-[#74dcff] transition-colors hover:text-white">Conhecer soluções <ArrowUpRight className="h-4 w-4" /></Link></div><div className="relative"><div aria-hidden className="absolute -inset-8 rounded-full bg-[#1789d0]/15 blur-3xl" /><WindowFrame className="relative border-[#4d94bc]/50 bg-[#0d1a29]"><DashboardMockup /></WindowFrame></div></div></section>
 
       <section className="orbyt-gateway relative overflow-hidden bg-[#060611] py-28 md:py-36">
         <div aria-hidden className="orbyt-gateway-orbit orbyt-gateway-orbit-one" /><div aria-hidden className="orbyt-gateway-orbit orbyt-gateway-orbit-two" /><div aria-hidden className="orbyt-gateway-planet" />
-        <div className="relative mx-auto max-w-4xl px-6 text-center md:px-10">
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#aab8ff]">Um produto BPInfo</p>
-          <p className="mt-7 font-display text-[20vw] leading-none tracking-[-0.07em] text-[#e8eaff] md:text-[10rem]">ORBYT</p>
-          <p className="mx-auto mt-4 max-w-md text-lg text-[#b7bad5]">Plataforma de gestão empresarial para lojas, equipe, comissões, promoções e relatórios.</p>
-          <OrbytTransitionLink className="mt-10" />
-        </div>
+        <div className="relative mx-auto max-w-4xl px-6 text-center md:px-10"><p className="text-xs font-medium uppercase tracking-[0.22em] text-[#aab8ff]">Um produto BPInfo</p><p className="mt-7 font-display text-[20vw] leading-none tracking-[-0.07em] text-[#e8eaff] md:text-[10rem]">ORBYT</p><p className="mx-auto mt-4 max-w-md text-lg text-[#b7bad5]">Plataforma de gestão empresarial para lojas, equipe, comissões, promoções e relatórios.</p><OrbytTransitionLink className="mt-10" /></div>
       </section>
     </div>
   );

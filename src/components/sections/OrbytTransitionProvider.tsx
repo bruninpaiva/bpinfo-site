@@ -22,6 +22,7 @@ const TRANSITION_DURATION = {
 const REVEAL_DURATION = 200;
 const STAR_COUNT = 12;
 const WARP_STREAK_COUNT = 10;
+const TRANSITION_BRIDGE_KEY = "orbyt-entry-bridge";
 
 export function OrbytTransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -30,10 +31,31 @@ export function OrbytTransitionProvider({ children }: { children: React.ReactNod
   const hasStartedNavigation = useRef(false);
   const isEntering = entryPhase === "normal" || entryPhase === "reduced";
 
+  const clearTransitionBridge = useCallback(() => {
+    try {
+      window.sessionStorage.removeItem(TRANSITION_BRIDGE_KEY);
+    } catch {
+      // Storage can be unavailable in a locked-down browser context.
+    }
+  }, []);
+
+  const finishReveal = useCallback(() => {
+    clearTransitionBridge();
+    setEntryPhase(null);
+  }, [clearTransitionBridge]);
+
   const completeTransition = useCallback(() => {
     if (hasStartedNavigation.current) return;
 
     hasStartedNavigation.current = true;
+    // The App Router normally preserves the root layout. If it falls back to
+    // a document navigation, this marker lets the destination document render
+    // the final flash before its first visible paint.
+    try {
+      window.sessionStorage.setItem(TRANSITION_BRIDGE_KEY, "1");
+    } catch {
+      // The client-side overlay still completes when storage is unavailable.
+    }
     router.push("/orbyt");
   }, [router]);
 
@@ -71,9 +93,9 @@ export function OrbytTransitionProvider({ children }: { children: React.ReactNod
   useEffect(() => {
     if (entryPhase !== "reveal") return;
 
-    const timeout = window.setTimeout(() => setEntryPhase(null), REVEAL_DURATION + 100);
+    const timeout = window.setTimeout(finishReveal, REVEAL_DURATION + 100);
     return () => window.clearTimeout(timeout);
-  }, [entryPhase]);
+  }, [entryPhase, finishReveal]);
 
   const value = {
     startOrbytTransition,
@@ -93,7 +115,7 @@ export function OrbytTransitionProvider({ children }: { children: React.ReactNod
               && event.currentTarget === event.target
               && event.animationName === "entry-reveal"
             ) {
-              setEntryPhase(null);
+              finishReveal();
             }
           }}
         >
