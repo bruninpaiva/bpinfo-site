@@ -4,6 +4,7 @@ import { footerNav } from "@/lib/config/nav";
 import { siteConfig } from "@/lib/config/site";
 import { buildWhatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
 import { Container } from "@/components/ui/Container";
+import { OrbytTransitionLink } from "@/components/sections/OrbytTransitionLink";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -48,12 +49,18 @@ export function Footer() {
               <ul className="mt-4 space-y-3">
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-fg-muted transition-colors hover:text-fg"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href === "/orbyt" ? (
+                      <OrbytTransitionLink className="bg-transparent px-0 py-0 text-sm font-normal tracking-normal text-fg-muted hover:scale-100 hover:text-fg">
+                        {link.label}
+                      </OrbytTransitionLink>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-fg-muted transition-colors hover:text-fg"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

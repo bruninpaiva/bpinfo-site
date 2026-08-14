@@ -4,7 +4,7 @@ import { workSteps } from "@/lib/config/services";
 
 export function HowWeWorkSection() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
+    <section className="bg-surface py-20 md:py-28">
       <Container>
         <SectionHeading
           eyebrow="Método"

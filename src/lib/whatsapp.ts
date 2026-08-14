@@ -11,4 +11,7 @@ export function buildWhatsappLink(message?: string) {
 }
 
 export const defaultWhatsappMessage =
-  "Olá! Vim pelo site da BPInfo e gostaria de saber mais sobre o ORBYT.";
+  "Olá! Vim pelo site da BPInfo e gostaria de conversar sobre uma necessidade de tecnologia.";
+
+export const hardwareWhatsappMessage =
+  "Olá! Vim pelo site da BPInfo e gostaria de falar sobre computadores, manutenção ou upgrades.";

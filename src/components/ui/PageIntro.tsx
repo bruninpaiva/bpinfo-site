@@ -11,16 +11,17 @@ export function PageIntro({
   description?: ReactNode;
 }) {
   return (
-    <section className="border-b border-border py-16 md:py-20">
-      <Container>
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
+    <section className="relative overflow-hidden py-20 md:py-28">
+      <div aria-hidden className="bg-grid-dots absolute inset-0 opacity-[0.05]" />
+      <Container className="relative">
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
           {eyebrow}
         </p>
-        <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl leading-[1.1] text-fg md:text-5xl">
+        <h1 className="mt-6 max-w-3xl text-balance font-display text-5xl leading-[0.96] text-fg md:text-7xl">
           {title}
         </h1>
         {description ? (
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-fg-muted md:text-lg">
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-fg-muted md:text-lg">
             {description}
           </p>
         ) : null}

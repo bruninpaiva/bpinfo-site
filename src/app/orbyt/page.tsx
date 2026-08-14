@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import { OrbytHero } from "@/components/sections/OrbytHero";
-import { OrbytFeaturesSection } from "@/components/sections/OrbytFeaturesSection";
-import { ProductDemoTabs } from "@/components/sections/ProductDemoTabs";
-import { ResponsivenessSection } from "@/components/sections/ResponsivenessSection";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { OrbytExperience } from "@/components/sections/OrbytExperience";
 import { siteConfig } from "@/lib/config/site";
 
 export const metadata: Metadata = {
@@ -21,13 +16,6 @@ export const metadata: Metadata = {
 
 export default function OrbytPage() {
   return (
-    <>
-      <OrbytHero />
-      <OrbytFeaturesSection />
-      <ProductDemoTabs />
-      <ResponsivenessSection />
-      <FaqSection />
-      <ContactSection />
-    </>
+    <OrbytExperience />
   );
 }

@@ -5,6 +5,7 @@ export type NavItem = {
 
 export const mainNav: NavItem[] = [
   { label: "Soluções", href: "/solucoes" },
+  { label: "Computadores", href: "/computadores" },
   { label: "ORBYT", href: "/orbyt" },
   { label: "Sobre", href: "/sobre" },
   { label: "Contato", href: "/contato" },
@@ -18,6 +19,7 @@ export const footerNav: {
     title: "BPInfo Tecnologia",
     links: [
       { label: "Soluções", href: "/solucoes" },
+      { label: "Computadores", href: "/computadores" },
       { label: "Sobre", href: "/sobre" },
       { label: "Contato", href: "/contato" },
     ],

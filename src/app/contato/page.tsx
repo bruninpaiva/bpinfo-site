@@ -5,14 +5,14 @@ import { ContactSection } from "@/components/sections/ContactSection";
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Fale com a BPInfo Tecnologia para solicitar uma demonstração do ORBYT ou conversar sobre um sistema sob medida para a sua empresa.",
+    "Fale com a BPInfo Tecnologia sobre sistemas, automações, computadores, manutenção ou upgrades.",
   alternates: { canonical: "/contato" },
 };
 
 export default function ContatoPage() {
   return (
     <>
-      <PageIntro eyebrow="Contato" title="Vamos conversar sobre a sua operação" />
+      <PageIntro eyebrow="Contato" title="Vamos conversar sobre o que você precisa" />
       <ContactSection />
     </>
   );

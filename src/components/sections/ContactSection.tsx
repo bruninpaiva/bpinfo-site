@@ -7,7 +7,7 @@ import { buildWhatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
 
 export function ContactSection() {
   return (
-    <section id="contato" className="border-t border-border py-20 md:py-28">
+    <section id="contato" className="py-20 md:py-28">
       <Container className="grid gap-14 md:grid-cols-[1fr_1.4fr]">
         <div>
           <SectionHeading
@@ -15,7 +15,7 @@ export function ContactSection() {
             title="Fale com a BPInfo"
             description="Preencha o formulário ou fale diretamente por um dos canais abaixo."
           />
-          <div className="mt-8 space-y-4 border-t border-border pt-8">
+          <div className="mt-8 space-y-4">
             <a
               href={buildWhatsappLink(defaultWhatsappMessage)}
               target="_blank"

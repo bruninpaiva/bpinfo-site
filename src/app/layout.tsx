@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Newsreader, Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { OrbytTransitionProvider } from "@/components/sections/OrbytTransitionProvider";
 import { siteConfig } from "@/lib/config/site";
 import "./globals.css";
 
@@ -55,13 +55,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="pt-BR" data-scroll-behavior="smooth">
       <body className={`${serif.variable} ${sans.variable} antialiased`}>
-        <ThemeProvider>
+        <OrbytTransitionProvider>
           <Header />
           <main className="pt-16 md:pt-20">{children}</main>
           <Footer />
-        </ThemeProvider>
+        </OrbytTransitionProvider>
       </body>
     </html>
   );

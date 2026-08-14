@@ -6,7 +6,7 @@ import { buildWhatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
 
 export function FinalCta() {
   return (
-    <section className="relative overflow-hidden border-t border-contrast-border bg-contrast-bg py-24 text-contrast-fg md:py-32">
+    <section className="relative overflow-hidden bg-surface py-24 text-contrast-fg md:py-32">
       <span
         aria-hidden
         className="pointer-events-none absolute -left-6 -top-16 select-none font-display text-[14rem] leading-none text-contrast-fg opacity-[0.05] md:text-[20rem]"

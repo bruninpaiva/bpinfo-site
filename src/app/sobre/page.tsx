@@ -7,7 +7,7 @@ import { FinalCta } from "@/components/sections/FinalCta";
 export const metadata: Metadata = {
   title: "Sobre a BPInfo",
   description:
-    "A BPInfo nasceu para transformar necessidades reais em soluções tecnológicas simples, funcionais e acessíveis.",
+    "A BPInfo desenvolve soluções digitais e trabalha com computadores, manutenção e upgrades para necessidades reais.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -31,26 +31,25 @@ export default function SobrePage() {
     <>
       <PageIntro
         eyebrow="Sobre a BPInfo"
-        title="Tecnologia a serviço de processos reais"
+        title="Tecnologia para processos e equipamentos reais"
       />
 
-      <section className="border-b border-border py-16 md:py-20">
+      <section className="py-16 md:py-20">
         <Container className="max-w-3xl">
           <p className="text-balance font-display text-2xl leading-snug text-fg md:text-3xl">
-            A BPInfo nasceu para transformar necessidades reais em soluções
-            tecnológicas simples, funcionais e acessíveis.
+            A BPInfo trabalha com tecnologia de ponta a ponta: da operação de
+            uma empresa ao computador que precisa funcionar bem todos os dias.
           </p>
           <p className="mt-6 leading-relaxed text-fg-muted">
-            Desenvolvemos sistemas focados na rotina das empresas, priorizando
-            organização, praticidade e resultado. O ORBYT é o principal
-            produto da BPInfo, mas grande parte do nosso trabalho acontece
-            diretamente com clientes que precisam de sistemas e automações
-            desenhados sob medida para a própria operação.
+            Desenvolvemos sistemas, automações e integrações para empresas.
+            Também montamos computadores, realizamos manutenção, diagnóstico e
+            upgrades. O ORBYT é o principal produto próprio da BPInfo e faz
+            parte dessa mesma forma prática de trabalhar com tecnologia.
           </p>
         </Container>
       </section>
 
-      <section className="border-b border-border py-16 md:py-20">
+      <section className="py-16 md:py-20">
         <Container>
           <div className="grid gap-10 border-t border-border pt-10 sm:grid-cols-3">
             {values.map((value) => (

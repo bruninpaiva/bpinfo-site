@@ -17,7 +17,7 @@ export const siteConfig = {
   shortName: "BPInfo",
   product: "ORBYT",
   productTagline: "Plataforma de gestão inteligente para lojas.",
-  tagline: "Soluções simples para processos reais.",
+  tagline: "Tecnologia para resolver necessidades reais.",
   footerCredit: "Desenvolvido pela BPInfo Tecnologia.",
 
   url: readEnv(process.env.NEXT_PUBLIC_SITE_URL, "https://bpinfo.app.br"),
@@ -41,9 +41,9 @@ export const siteConfig = {
       process.env.NEXT_PUBLIC_ORBYT_URL.trim().length > 0,
   ),
 
-  metaTitle: "BPInfo Tecnologia | Sistemas e automações",
+  metaTitle: "BPInfo Tecnologia | Soluções digitais e computadores",
   metaDescription:
-    "Sistemas personalizados, automação de processos e soluções de gestão para pequenas e médias empresas. Conheça o ORBYT, plataforma de gestão inteligente para lojas.",
+    "Sistemas, automações, computadores, manutenção e upgrades. Conheça também o ORBYT, produto de gestão desenvolvido pela BPInfo.",
 };
 
 export type SiteConfig = typeof siteConfig;

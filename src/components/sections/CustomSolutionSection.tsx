@@ -10,8 +10,8 @@ const highlights = [
 
 export function CustomSolutionSection() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
-      <Container className="grid gap-12 md:grid-cols-[1.4fr_1fr]">
+    <section className="relative py-20 md:py-28">
+      <Container className="grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-start">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
             Solução personalizada
@@ -23,18 +23,14 @@ export function CustomSolutionSection() {
           </p>
         </div>
 
-        <div className="border-t border-border pt-8 md:border-t-0 md:border-l md:border-t-0 md:pl-10 md:pt-0">
-          <ul className="space-y-4">
-            {highlights.map((item) => (
-              <li
-                key={item}
-                className="border-b border-border pb-4 text-fg-muted last:border-b-0"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="space-y-5 md:border-l md:border-border md:pl-10">
+          {highlights.map((item) => (
+            <li key={item} className="flex items-baseline gap-3 text-fg-muted">
+              <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-accent" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   );

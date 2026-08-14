@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import type { NavItem } from "@/lib/config/nav";
 import { Button } from "@/components/ui/Button";
+import { OrbytTransitionLink } from "@/components/sections/OrbytTransitionLink";
 import { siteConfig } from "@/lib/config/site";
 import { buildWhatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
 
@@ -40,14 +41,24 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
 
           <nav className="flex flex-col px-6 pt-4">
             {items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-5 font-display text-2xl text-fg"
-              >
-                {item.label}
-              </Link>
+              item.href === "/orbyt" ? (
+                <OrbytTransitionLink
+                  key={item.href}
+                  onTransitionStart={() => setOpen(false)}
+                  className="justify-start border-b border-border bg-transparent px-0 py-5 font-display text-2xl font-normal tracking-normal text-fg hover:scale-100"
+                >
+                  {item.label}
+                </OrbytTransitionLink>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-border py-5 font-display text-2xl text-fg"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
 

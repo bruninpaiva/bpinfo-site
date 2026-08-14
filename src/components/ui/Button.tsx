@@ -7,11 +7,12 @@ const baseStyles =
 
 const variants = {
   primary: "bg-accent text-accent-fg hover:bg-accent-strong",
-  outline:
-    "border border-fg text-fg hover:bg-fg hover:text-bg dark:hover:bg-fg dark:hover:text-bg",
+  outline: "border border-fg text-fg hover:bg-fg hover:text-bg",
   ghost: "text-fg-muted hover:text-fg",
   "on-contrast":
     "border border-contrast-border text-contrast-fg hover:border-contrast-fg",
+  /** Uso exclusivo do universo ORBYT (azul/violeta) — nunca usar em telas BPInfo. */
+  "orbyt-light": "bg-[#d9ddff] text-[#090a18] hover:bg-white",
 } as const;
 
 const sizes = {
