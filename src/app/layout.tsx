@@ -17,7 +17,7 @@ const serif = Newsreader({
 const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans-base",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "800"],
   display: "swap",
 });
 

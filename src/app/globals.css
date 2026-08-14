@@ -209,6 +209,45 @@
   .bp-hardware-label-two { right: 2%; bottom: 16%; }
   .bp-hardware-leader { position: absolute; height: 1px; background: rgba(25, 201, 154, 0.4); }
 
+  /* Fio técnico que atravessa várias seções da Home, costurando a
+     composição sem depender de bordas entre blocos. */
+  .bp-spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(25, 201, 154, 0.4) 0 5px,
+      transparent 5px 13px
+    );
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    pointer-events: none;
+  }
+
+  /* Placeholder de fotografia real (bancada, montagem, equipamento) —
+     mesma textura da galeria, mas livre de padding/altura fixa para uso
+     em composições soltas e sobrepostas. */
+  .bp-photo-frame {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(25, 201, 154, 0.16), transparent 45%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 1px, transparent 1px 15px),
+      #15191f;
+  }
+
+  .bp-photo-frame::after {
+    position: absolute;
+    right: -12%;
+    bottom: -40%;
+    height: 70%;
+    width: 70%;
+    border: 1px solid rgba(25, 201, 154, .3);
+    border-radius: 50%;
+    content: "";
+  }
+
   .bp-gallery-slot {
     position: relative;
     display: flex;
